@@ -1,0 +1,31 @@
+   
+   <div class="container-fluid, primary">
+       <h1>Empresas </h1>
+   </div>
+
+  <div class="aling-midle">
+    <a class="btn btn-primary" href="../empresas/create" role="button" onclick=""> Agregar</a>
+  </div>
+    <div class="table-responsive">
+        <table class="table table-striped, align-middle">
+            <thead class="table-dark">
+            <tr>
+            <th>Razon Social</th> 
+            <th>RFC</th>
+            <th> Opciones</th>
+            </tr>    
+            
+
+            </thead>
+            <tbody>
+                <?php foreach ($empresas as $e): ?>
+                   <tr>
+                    <td>  <?= $e->razon_social ?></td>
+                    <td>  <?= $e->rfc ?></td>
+                    <td> <i class="bi bi-pencil-square"></i> </td>
+                    <?php endforeach; ?>
+                    </tr>
+            </tbody>
+        </table>
+
+    </div>

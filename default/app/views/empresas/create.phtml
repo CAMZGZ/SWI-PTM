@@ -1,0 +1,17 @@
+<?php View::content() ?>
+<?= Form::open() ?>
+<div class="mb-3">
+<label for="formGroupExampleInput" class="form-label">RFC</label>
+<?= Form::text('empresa.rfc')?>
+</div>
+<div class="mb-3">
+<label for="formGroupExampleInput" class="form-label">Razon Social</label>
+<?= Form::text('empresa.razon_social'
+//, '', ['class' => 'form-control']
+)
+?>
+</div>
+<button type="submit" class="btn btn-primary">Guardar</button>
+
+<?// = Form::submit('Guardar') ?>
+<?= Form::close() ?>
