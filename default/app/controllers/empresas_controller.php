@@ -16,10 +16,14 @@ class EmpresasController extends AppController
                 Input::delete();
             }
             else{
+                
                 Flash::error('No se registro correctamente');
                 
             }
         }
+
+    }
+    public function show(){
 
     }
     
