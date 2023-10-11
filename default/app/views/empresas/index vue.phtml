@@ -1,0 +1,53 @@
+<div class="container-fluid, primary">
+    <h1>Empresas </h1>
+</div>
+
+<div id="t_empresas">
+    <div class="table-responsive">
+            <div class="text-right mb-2">
+                <a class="btn btn-primary" href="empresas/create" role="button" onclick=""> Agregar</a>
+                <button @click ="excel" class="btn btn-success">Excel</button>
+                <button  @click = "pdf" class="btn btn-danger">PDF</button>
+            </div>    
+    
+        <table class="table table-striped, align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Razon Social</th> 
+                    <th>RFC</th>
+                    <th> Opciones</th>
+                </tr>    
+            </thead>
+            <tbody>
+                <tr v-for="e in empresas">
+                    <td>{{e.razon_social}}</td>
+                    <td>{{e.rfc}}</td>
+                    <td class="align-middle"> 
+                    <center>
+                        <a class="btn btn-info" href="empresas/update{{e.id}}" role="button" onclick="">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a class="btn btn-danger" href="empresas/create" role="button" onclick="">
+                            <i class="bi bi-trash3"></i>
+                        </a>
+                    </center>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="aplication/javascript">
+    var t_empresas = new Vue ({
+    el: '#t_empresas',
+    data:{
+        msg: "Mensaje",
+        emmpresas:[
+            {
+                id: 1, razon_social:'PTM', rfc:'chupamela'
+            }
+        ]
+        }
+    })
+</script>

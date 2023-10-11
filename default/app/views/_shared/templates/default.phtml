@@ -7,7 +7,7 @@ $DOMINIO='http://localhost/SWIPTM/default/public';
 <html lang="es">
  <head>
   <meta charset=<?= APP_CHARSET ?> >
-  <title>SWIPTM</title>
+  <title><?php echo isset($title) ? $title: 'SWIPTM'; ?></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?//php Tag::css('kumbia') ?>
   <?//= Html::includeCss() ?>
@@ -20,6 +20,11 @@ $DOMINIO='http://localhost/SWIPTM/default/public';
 
     <!-- Custom styles for this template-->
     <link href="<?php echo($DOMINIO) ?>/libs/SB2/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- ========== Tabulator ========== -->
+    <link href="<?php echo($DOMINIO) ?>/css/tabulator_bootstrap5.min.css" rel="stylesheet">
+    
+    <!-- =========Tabulator ========== -->
 </head>
 <body id="page-top">
   
@@ -44,11 +49,16 @@ $DOMINIO='http://localhost/SWIPTM/default/public';
  <script src="<?php echo($DOMINIO) ?>/libs/SB2/vendor/jquery/jquery.min.js"></script>
  <script src="<?php echo($DOMINIO) ?>/libs/bootstrap/js/bootstrap.bundle.min.js"></script>   
  <script src="<?php echo($DOMINIO) ?>/libs/vue/vue.global.js"></script>
+ <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+ 
 
     <!-- Core plugin JavaScript-->
     <script src="<?php echo($DOMINIO) ?>/libs/SB2/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="<?php echo($DOMINIO) ?>/libs/SB2/js/sb-admin-2.min.js"></script>
+    <!-- ========== Start Tabulator ========== -->
+    <script type="text/javascript" src="<?php echo($DOMINIO) ?>/javascript/tabulator.min.js"></script>  
+    <!-- ========== End Tabulator ========== -->
 </body>
 </html>
