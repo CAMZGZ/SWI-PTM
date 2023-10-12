@@ -8,6 +8,7 @@
                 <a class="btn btn-primary" href="empresas/create" role="button" onclick=""> Agregar</a>
                 <button @click ="excel" class="btn btn-success">Excel</button>
                 <button  @click = "pdf" class="btn btn-danger">PDF</button>
+                <a class="btn btn-warning" href="empresas/bajas" role="button" onclick=""> Bajas</a>
             </div>    
     
         <table class="table table-striped, align-middle">
@@ -32,7 +33,7 @@
                         <a class="btn btn-info" href="empresas/update/<?= $e->id ?>" role="button" onclick="">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <a class="btn btn-danger" href="empresas/create" role="button" onclick="">
+                        <a class="btn btn-danger" href="empresas/eliminar/<?= $e->id ?>" role="button" onclick="">
                             <i class="bi bi-trash3"></i>
                         </a>
                     </center>

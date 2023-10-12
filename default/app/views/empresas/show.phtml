@@ -29,7 +29,9 @@
 </div>
 <div class="text-right mb-2">
     <a class="btn btn-info" href="../../empresas/update/<?= $empresa->id ?>" role="button" onclick="">Editar</a>
-    <a class="btn btn-danger" href="../../empresas/update/ <?= $empresa->id ?> " role="button" onclick="">Eliminar</a>
-    <a class="btn btn-warning" href="../../empresas" role="button" onclick="">Regresar</a>
+    <a class="btn btn-danger" href="../../empresas/eliminar/ <?= $empresa->id ?> " role="button" onclick="">Eliminar</a>
+    <a class="btn btn-warning" href="../../empresas<?php if($empresa->estatus == 0){
+        echo('/bajas');
+    }?>" role="button" onclick="">Regresar</a>
 
 </div>  

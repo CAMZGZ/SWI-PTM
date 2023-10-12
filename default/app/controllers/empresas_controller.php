@@ -4,7 +4,7 @@ class EmpresasController extends AppController
     //Pagina de inicio
     public function index(){
         $this->title='Empresas';
-        $this->empresas = (new Empresas())->find();
+        $this->empresas = (new Empresas())->find("conditions: estatus='1'");
 
         // Paso el resultado de la consulta que sera mostrada en el datagrid
         $this->jEmpresas = Load::model('empresas')->find();
@@ -29,6 +29,7 @@ class EmpresasController extends AppController
             if($empresa->create()){
                 Flash::valid('Empresa Guardada');
                 Input::delete();
+                return Redirect::to('empresas');
             }
             else{
                 
@@ -51,12 +52,14 @@ class EmpresasController extends AppController
     //Actualizar un registro
     public function update($id){
         $this->title='Editar';
-        $this->empresa = (new Empresas())->find($id);
         
+        $this->empresa = (new Empresas())->find($id);
         if(Input::hasPost('empresa')){
                       
             if($this->empresa->update(Input::post('empresa'))){
+                
                 Flash::valid('Empresa Modificada');
+                return Redirect::to('empresas');
                 Input::delete();
             }
             else{
@@ -68,5 +71,36 @@ class EmpresasController extends AppController
 
 
     }
+
+    public function eliminar($id){
+
+        $empresa = new Empresas();
+    $empresa->find_first($id);
+    $empresa->estatus = 0;
+    $empresa->update();
+    return Redirect::to('empresas');
+
+        //$sql = "UPDATE empresa SET estatus = 0 WHERE id = $id";
+        //$this->empresa = (new Empresas())->find($id);
+        //$this->empresa->update(Input::post($sql));
+        //return Redirect::to('empresas');
+            
+    }
+        //Pagina que muestra empresas dadas de baja
+        public function bajas(){
+            $this->title='Bajas';
+            $this->empresas = (new empresas())->find("conditions: estatus='0'");
+        
+        }
     
+          //Reactivar personal
+    
+        public function reactivar($id){
+        $empresa = new Empresas();
+        $empresa->find_first($id);
+        $empresa->estatus = 1;
+        $empresa->update();
+        return Redirect::to('empresas');
+                
+        }
 }

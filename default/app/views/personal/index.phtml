@@ -2,16 +2,22 @@
     <h1>Personal </h1>
 </div>
 
-<div id="t_empresas">
+<!-- Include the necessary files 
+<link rel="stylesheet" href="http://localhost/SWIPTM/libs/DataTables/datatables.min.css">
+
+<script src="http://localhost/SWIPTM/libs/DataTables/dataTables.min.js"></script>
+-->
+<div id="personal">
     <div class="table-responsive">
             <div class="text-right mb-2">
                 <a class="btn btn-primary" href="personal/create" role="button" onclick=""> Agregar</a>
                 <button @click ="excel" class="btn btn-success">Excel</button>
                 <button  @click = "pdf" class="btn btn-danger">PDF</button>
+                <a class="btn btn-warning" href="personal/bajas" role="button" onclick=""> Bajas</a>
             </div>    
     
-        <table id="data" class="table table-striped" style="width:100%">
-            <thead class="table-dark">
+        <table id="data" class="table table-striped  table-borderless" style="width:100%">
+            <thead class="table-dark text-capitalize">
                 <tr>
                     <th class="text-center">Número de Socio</th> 
                     <th>Nombre Completo</th>
@@ -24,36 +30,27 @@
                 <?php foreach ($personal as $p): ?>
                 <tr class="align-middle">
                     <td class="text-center"> 
-                        <a href="empresas/show/<?= $p->id ?>" class="text-dark"> 
+                        <a href="personal/show/<?= $p->id ?>" class="text-dark"> 
                         <?= $p->no_socio ?>
                     </a>
                 </td>
                     <td><?= $p->p_apellido ?> <?= $p->s_apellido ?> <?= $p->nombre ?></td>
-                    <td><?= $p->departamento_id ?></td>
+                    <td><?= $p->getDepartamentos()->nombre ?></td>
                     <td><?= $p->curp ?></td>
                     <td class="align-middle"> 
                     <center>
-                        <a class="btn btn-info" href="empresas/update/<?= $p->id ?>" role="button" onclick="">
+                        <a class="btn btn-info" href="personal/update/<?= $p->id ?>" role="button" onclick="">
                             <i class="bi bi-pencil-square"></i>
                         </a>
-                        <a class="btn btn-danger" href="empresas/create" role="button" onclick="">
+                        <a class="btn btn-danger" href="personal/eliminar/<?= $p->id ?>" role="button" onclick="">
                             <i class="bi bi-trash3"></i>
                         </a>
                     </center>
                     </td>
                     <?php endforeach; ?>
+                    
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
-
-<script type="aplication/javascript">
-    var t_empresas = new Vue ({
-    el: "t_empresas",
-    data:{
-        msg: "Mensaje",
-        empresas: <?= $empresas?>
-        }
-    })
-</script>

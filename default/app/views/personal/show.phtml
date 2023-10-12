@@ -1,0 +1,87 @@
+<h1><?= $persona->p_apellido ?> <?= $persona->s_apellido ?> <?= $persona->nombre ?></h1>
+<div class="col-sm-5 text-center">
+
+
+<h2><?= $persona->no_socio ?></h2>
+</div>
+<?php View::content() ?>
+
+<?= Form::open() ?>
+<fieldset disabled>
+<div class="row g-4 align-items-center">
+
+<div class="card">
+    <h5 class="card-header">Información Socio</h5>
+    <div class="card-body">
+        <div class="row g-3 align-items-center">
+
+            <div class="col-sm-4">
+                <p class="card-title"> Número de socio</p>
+                <?= Form::text('persona.no_socio', array("class"=>"form-control",
+                'placeholder'=>'123456789'))?>
+            </div>
+            <div class="col-sm-4">
+                <p class="card-title"> Departamento</p>
+                <select  class="form-select"  name="persona[departamento_id]">
+                <option selected>Selecciona un departamento</option>
+                    <?php foreach ($personal as $p): ?>
+                        <?php foreach ($departamentos as $d): ?>
+                        <option value="<?= $p->departamento_id ?>"><?= $d->nombre?></option>
+                    <?php endforeach; ?>
+
+                    <?php endforeach; ?>
+                </select>
+            
+            </div>
+            <div class="col-sm-4">
+                <p class="card-title">Fecha Ingreso</p>
+                <?= Form::text('persona.fecha_ingreso', array("class"=>"form-control",
+                'placeholder'=>'DURANGO'))?>
+            </div>      
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h5 class="card-header">Información Personal</h5>
+    <div class="card-body">
+        <div class="row g-3 align-items-center">
+
+            <div class="col-sm-4">
+                <p class="card-title"> Nombre</p>
+                <?= Form::text('persona.nombre', array("class"=>"form-control",
+                'placeholder'=>'JUAN'))?>
+            </div>
+            <div class="col-sm-4">
+                <p class="card-title"> Primer Apellido</p>
+                <?= Form::text('persona.p_apellido', array("class"=>"form-control",
+                'placeholder'=>'PEREZ'))?>
+            </div>
+            <div class="col-sm-4">
+                <p class="card-title"> Segundo Apellido</p>
+                <?= Form::text('persona.s_apellido', array("class"=>"form-control",
+                'placeholder'=>'DURANGO'))?>
+            </div>
+            <div class="">
+                <p class="card-title"> CURP</p>
+                <?= Form::text('persona.curp', array("class"=>"form-control",
+                'placeholder'=>'DURANGO'))?>
+            </div>      
+        </div>
+    </div>
+</div>
+</div>
+</fieldset>
+
+<?// = Form::submit('Guardar') ?>
+<?= Form::close() ?>
+
+
+<div class="text-right mb-2">
+    <a class="btn btn-info" href="../../personal/update/<?= $persona->id ?>" role="button" onclick="">Editar</a>
+    <a class="btn btn-danger" href="../../personal/eliminar/ <?= $persona->id ?> " role="button" onclick="">Eliminar</a>
+    <a class="btn btn-warning" href="../../personal<?php if($persona->estatus == 0){
+        echo('/bajas');
+    }?>"  role="button" onclick="">Regresar</a>
+
+</div>  

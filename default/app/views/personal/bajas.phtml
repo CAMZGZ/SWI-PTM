@@ -1,0 +1,55 @@
+<div class="container-fluid, primary text-capitalize ">
+    <h1 >Personal dado de <tempnam class="text-danger">Baja</tempnam></h1>
+</div>
+
+
+<div id="personal">
+    <div class="table-responsive">
+            <div class="text-right mb-2">
+                <button @click ="excel" class="btn btn-success">Excel</button>
+                <button  @click = "pdf" class="btn btn-danger">PDF</button>
+            </div>    
+    
+        <table id="data" class="table table-striped  table-borderless" style="width:100%">
+            <thead class="table-dark text-capitalize">
+                <tr>
+                    <th class="text-center">Número de Socio</th> 
+                    <th>Nombre Completo</th>
+                    <th>Departamento</th>
+                    <th>CURP</th>
+                    <th> Opciones</th>
+                </tr>    
+            </thead>
+            <tbody>
+                <?php foreach ($personal as $p): ?>
+                <tr class="align-middle">
+                    <td class="text-center"> 
+                        <a href="show/<?= $p->id ?>" class="text-dark"> 
+                        <?= $p->no_socio ?>
+                    </a>
+                </td>
+                    <td><?= $p->p_apellido ?> <?= $p->s_apellido ?> <?= $p->nombre ?></td>
+                    <td><?= $p->getDepartamentos()->nombre ?></td>
+                    <td><?= $p->curp ?></td>
+                    <td class="align-middle"> 
+                    <center>
+                        <a class="btn btn-primary" href="http://localhost/SWIPTM/default/public/personal/reactivar/<?= $p->id ?>" role="button" onclick="">
+                        <i class="bi bi-check-lg"></i>
+                        </a>
+                    </center>
+                    </td>
+                    <?php endforeach; ?>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="http://localhost/SWIPTM/default/public/javascript/tablas/personal/bajas.js"></script>
+</div>
+<div class="text-right mb-2">
+    <a class="btn btn-danger" 
+    href="http://localhost/SWIPTM/default/public/personal"
+    role="button" onclick="">
+        <i class="bi bi-arrow-left-circle-fill"></i>
+    </a>
+</div>

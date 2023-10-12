@@ -1,10 +1,10 @@
 <?php
-class personalController extends AppController
+class PersonalController extends AppController
 {
     //Pagina de inicio
     public function index(){
-        $this->title='personal';
-        $this->personal = (new personal())->find();
+        $this->title='Personal';
+        $this->personal = (new personal())->find("conditions: estatus='1'");
 
         // Paso el resultado de la consulta que sera mostrada en el datagrid
         $this->jpersonal = Load::model('personal')->find();
@@ -21,13 +21,14 @@ class personalController extends AppController
 
     //Registrar en base de datos
     public function create(){
-        $this->title='Registrar persona';
+        $this->title='Registrar Persona';
+        $this->departamentos = (new departamentos())->find("conditions: estatus='1'");
 
         if(Input::hasPost('persona')){
             $persona =new personal (Input::post('persona'));
             
             if($persona->create()){
-                Flash::valid('persona Guardada');
+                Flash::valid('Persona Guardada');
                 Input::delete();
             }
             else{
@@ -43,7 +44,7 @@ class personalController extends AppController
     public function show($id){
         
         $this->persona = (new personal())->find($id);
-        $this->title='persona';
+        $this->title='Persona';
 
 
     }
@@ -52,6 +53,8 @@ class personalController extends AppController
     public function update($id){
         $this->title='Editar';
         $this->persona = (new personal())->find($id);
+
+        $this->departamentos = (new departamentos())->find("conditions: estatus='1'");
         
         if(Input::hasPost('persona')){
                       
@@ -65,8 +68,36 @@ class personalController extends AppController
                 
             }
         }
+    }
 
+    //Eliminar (desactivar personal)
 
+    public function eliminar($id){
+
+        $persona = new Personal();
+    $persona->find_first($id);
+    $persona->estatus = 0;
+    $persona->update();
+    return Redirect::to('personal');
+            
+    }
+
+    //Pagina que muestra personal dado de baja
+    public function bajas(){
+        $this->title='Bajas';
+        $this->personal = (new personal())->find("conditions: estatus='0'");
+	
+    }
+
+      //Reactivar personal
+
+    public function reactivar($id){
+    $persona = new Personal();
+    $persona->find_first($id);
+    $persona->estatus = 1;
+    $persona->update();
+    return Redirect::to('personal');
+            
     }
     
 }
