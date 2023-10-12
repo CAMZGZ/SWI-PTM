@@ -1,1 +1,75 @@
-<?php View::partial('formularios/personal')?>
+<?php View::content() ?>
+
+<?= Form::open() ?>
+<div class="row g-4 align-items-center">
+
+<div class="card">
+    <h5 class="card-header">Información Socio</h5>
+    <div class="card-body">
+        <div class="row g-3 align-items-center">
+
+            <div class="col-sm-4">
+                <p class="card-title"> Número de socio</p>
+                <?= Form::text('persona.no_socio', array("class"=>"form-control",
+                'placeholder'=>'123456789'))?>
+            </div>
+            <div class="col-sm-4">
+                <p class="card-title"> Departamento</p>
+                <select  class="form-select"  name="persona[departamento_id]">
+                <option selected>Selecciona un departamento</option>
+                        <?php foreach ($departamentos as $d): ?>
+                        <option value="<?= $d->id ?>"><?= $d->nombre?></option>
+
+                    <?php endforeach; ?>
+                </select>
+            
+            </div>
+            <div class="col-sm-4">
+                <p class="card-title">Fecha Ingreso</p>
+                <?= Form::text('persona.fecha_ingreso', array("class"=>"form-control",
+                'placeholder'=>'DURANGO'))?>
+            </div>      
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h5 class="card-header">Información Personal</h5>
+    <div class="card-body">
+        <div class="row g-3 align-items-center">
+
+            <div class="col-sm-4">
+                <p class="card-title"> Nombre</p>
+                <?= Form::text('persona.nombre', array("class"=>"form-control",
+                'placeholder'=>'JUAN'))?>
+            </div>
+            <div class="col-sm-4">
+                <p class="card-title"> Primer Apellido</p>
+                <?= Form::text('persona.p_apellido', array("class"=>"form-control",
+                'placeholder'=>'PEREZ'))?>
+            </div>
+            <div class="col-sm-4">
+                <p class="card-title"> Segundo Apellido</p>
+                <?= Form::text('persona.s_apellido', array("class"=>"form-control",
+                'placeholder'=>'DURANGO'))?>
+            </div>
+            <div class="">
+                <p class="card-title"> CURP</p>
+                <?= Form::text('persona.curp', array("class"=>"form-control",
+                'placeholder'=>'DURANGO'))?>
+            </div>      
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<div class="text-right mb-2">
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a class="btn btn-danger" href="http://localhost/SWIPTM/personal" role="button" onclick=""> Cancelar</a>
+</div> 
+
+<?// = Form::submit('Guardar') ?>
+<?= Form::close() ?>
+

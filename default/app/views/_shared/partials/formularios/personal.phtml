@@ -17,10 +17,8 @@
                 <p class="card-title"> Departamento</p>
                 <select  class="form-select"  name="persona[departamento_id]">
                 <option selected>Selecciona un departamento</option>
-                    <?php foreach ($personal as $p): ?>
                         <?php foreach ($departamentos as $d): ?>
-                        <option value="<?= $p->departamento_id ?>"><?= $d->nombre?></option>
-                    <?php endforeach; ?>
+                        <option value="<?= $d->id ?>"><?= $d->nombre?></option>
 
                     <?php endforeach; ?>
                 </select>
